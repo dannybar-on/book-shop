@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@-webkit-keyframes shake-bottom{0%,100%{-webkit-transform:rotate(0deg);transform:rotate(0deg);-webkit-transform-origin:50% 100%;transform-origin:50% 100%}10%{-webkit-transform:rotate(2deg);transform:rotate(2deg)}20%,40%,60%{-webkit-transform:rotate(-4deg);transform:rotate(-4deg)}30%,50%,70%{-webkit-transform:rotate(4deg);transform:rotate(4deg)}80%{-webkit-transform:rotate(-2deg);transform:rotate(-2deg)}90%{-webkit-transform:rotate(2deg);transform:rotate(2deg)}}@keyframes shake-bottom{0%,100%{-webkit-transform:rotate(0deg);transform:rotate(0deg);-webkit-transform-origin:50% 100%;transform-origin:50% 100%}10%{-webkit-transform:rotate(2deg);transform:rotate(2deg)}20%,40%,60%{-webkit-transform:rotate(-4deg);transform:rotate(-4deg)}30%,50%,70%{-webkit-transform:rotate(4deg);transform:rotate(4deg)}80%{-webkit-transform:rotate(-2deg);transform:rotate(-2deg)}90%{-webkit-transform:rotate(2deg);transform:rotate(2deg)}}
+@-webkit-keyframes jello-horizontal{0%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}30%{-webkit-transform:scale3d(1.25,.75,1);transform:scale3d(1.25,.75,1)}40%{-webkit-transform:scale3d(.75,1.25,1);transform:scale3d(.75,1.25,1)}50%{-webkit-transform:scale3d(1.15,.85,1);transform:scale3d(1.15,.85,1)}65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1)}75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1)}100%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}@keyframes jello-horizontal{0%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}30%{-webkit-transform:scale3d(1.25,.75,1);transform:scale3d(1.25,.75,1)}40%{-webkit-transform:scale3d(.75,1.25,1);transform:scale3d(.75,1.25,1)}50%{-webkit-transform:scale3d(1.15,.85,1);transform:scale3d(1.15,.85,1)}65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1)}75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1)}100%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}
+
+ * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-image: linear-gradient(45deg, #49a09d, #5f2c82);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.create-book {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.create-book:hover {
+  -webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+    both;
+  animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+.form {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    -webkit-animation:jello-horizontal .9s both;animation:jello-horizontal .9s both
+}
+
+.form input[type="text"],
+.form input[type="number"] {
+    padding: 10px;
+}
+
+.form input[type="submit"] {
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.form input + input {
+    margin-top: 10px;
+}
+
+.form .submit {
+    background-color: forestgreen;
+    color: #fff;
+}
+
+.form .cancel {
+    background-color: tomato;
+    color: #fff;
+}
+
+.title-header,
+.price-header {
+    cursor: pointer;
+}
+
+.modal.open {
+  left: 50%;
+  transition: left 1s;
+}
+.modal {
+  z-index: 10;
+  color: #ccc;
+  background-color: #111;
+  padding: 10px;
+  position: absolute;
+  top: 0px;
+  left: 150%;
+  height: 80vh;
+  min-width: 300px;
+  text-align: center;
+}
+
+.books-table {
+  border-collapse: collapse;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.books-table th,
+.books-table td {
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.books-table th {
+  text-align: left;
+}
+
+.books-table thead th {
+  background-color: #55608f;
+}
+
+.books-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.books-table tbody td {
+  position: relative;
+}
+
+.books-table tbody td:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
+.actions td {
+  background-color: transparent;
+  padding: 0;
+}
+
+.actions tbody tr:hover {
+  background-color: transparent;
+}
+
+.actions tbody td:hover::before {
+  background-color: transparent;
+}
+
+.btn {
+  border: none;
+  padding: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.read-btn {
+  background-color: blue;
+}
+
+.update-btn {
+  background-color: orange;
+}
+
+.del-btn {
+  background-color: tomato;
+}

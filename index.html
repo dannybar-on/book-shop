@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book-Shop</title>
+    <link rel="stylesheet" href="./css/default.css" />
+  </head>
+  <body onload="onInit()">
+    <h1>Welcome to my bookshop!</h1>
+    <button class="create-book" onclick="onCreateNewBook()">
+      Create new book
+    </button>
+    <form class="form">
+      <input
+        type="text"
+        placeholder="Enter Book's title"
+        class="newTitle"
+        required
+      />
+      <input
+        type="number"
+        placeholder="Enter Price"
+        class="newPrice"
+        required
+      />
+      <input
+        class="submit"
+        onclick="onSubmitCreateNewBook(event)"
+        type="submit"
+        value="submit"
+      />
+      <input
+        class="cancel"
+        onclick="onCancelCreateNewBook(event)"
+        type="submit"
+        value="cancel"
+      />
+    </form>
+    <div class="modal">
+      <h3></h3>
+      <h4>Price <span></span></h4>
+      <div></div>
+      <h5>Book Description</h5>
+      <p></p>
+      <button onclick="onCloseModal()">Close</button>
+    </div>
+    <table class="books-table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th class="title-header" onclick="onSetSortBy('title')">Title</th>
+          <th class="price-header" onclick="onSetSortBy('price')">Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody class="books-container"></tbody>
+    </table>
+    <button onclick="onNextPage()">Next Page > </button>
+    <button onclick="onPrevPage()">< Prev Page</button>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/book.service.js"></script>
+    <script src="js/book.controller.js"></script>
+  </body>
+</html>
