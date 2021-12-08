@@ -18,6 +18,10 @@ body {
   overflow-x: hidden;
 }
 
+body.rtl {
+  direction: rtl;
+}
+
 .create-book {
   background-color: #fff;
   color: #000;

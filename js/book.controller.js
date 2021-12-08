@@ -11,13 +11,13 @@ function renderBooks() {
         <tr>
         <td>${book.id}</td>
         <td>${book.title}</td>
-        <td>$${book.price}</td>
+        <td>${formatCurrency(convertToIls(book.price))}</td>
         <td>
         <table class="actions">
         <tr>
-        <td><button class="btn read-btn" onclick="onReadBook('${book.id}')">Read</button></td>
-        <td><button class="btn update-btn" onclick="onUpdateBook('${book.id}')">Update</button></td>
-        <td><button class="btn del-btn" onclick="onDeleteBook('${book.id}')">Delete</button></td>
+        <td><button data-trans="read-btn" class="btn read-btn" onclick="onReadBook('${book.id}')">Read</button></td>
+        <td><button data-trans="update-btn" class="btn update-btn" onclick="onUpdateBook('${book.id}')">Update</button></td>
+        <td><button data-trans="del-btn" class="btn del-btn" onclick="onDeleteBook('${book.id}')">Delete</button></td>
         </tr>
         </table>
         </td>
@@ -26,6 +26,7 @@ function renderBooks() {
   });
 
   document.querySelector('.books-container').innerHTML = strHtmls.join('');
+  doTrans();
 }
 
 function renderBookRate(book) {
@@ -68,7 +69,7 @@ function onSetSortBy(sortBy) {
 }
 
 function onUpdateBook(bookId) {
-    const newPrice = +prompt('New price?');
+    const newPrice = +prompt(getTrans('update-price-modal'));
     if (newPrice) {
         const book = updateBook(bookId, newPrice);
         renderBooks();
@@ -79,7 +80,7 @@ function onReadBook(bookId) {
     const book = getBookById(bookId);
     const elModal = document.querySelector('.modal');
     elModal.querySelector('h3').innerText = book.title;
-    elModal.querySelector('h4 span').innerText = '$' + book.price;
+    elModal.querySelector('h4 span').innerText = formatCurrency(convertToIls(book.price));
     elModal.querySelector('div').innerHTML = `<button onclick="decrementBookRate('${book.id}')">-</button><span>${book.rate}</span><button onclick="incrementBookRate('${book.id}')">+</button>`;
     elModal.querySelector('p').innerText = book.desc;
     document.querySelector('.modal').classList.add('open');
@@ -96,5 +97,18 @@ function onNextPage() {
 
 function onPrevPage() {
     prevPage();
+    renderBooks();
+}
+
+function onSetLang(lang) {
+    setLang(lang);
+
+    if (lang === 'he') {
+        document.body.classList.add('rtl');
+    } else {
+        document.body.classList.remove('rtl')
+    }
+
+    doTrans();
     renderBooks();
 }
